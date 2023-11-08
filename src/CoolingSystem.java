@@ -10,4 +10,8 @@ public class CoolingSystem {
         this.max_TDP = max_TDP;
         this.socketsLists.addAll(socketsLists);
     }
+
+    public int getMax_TDP() {
+        return max_TDP;
+    }
 }

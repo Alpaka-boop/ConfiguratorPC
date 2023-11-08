@@ -1,5 +1,5 @@
 public class Configurator {
-    public boolean Validate(Computer computer) {
+    public int Validate(Computer computer) {
         return computer.Validate();
     }
 

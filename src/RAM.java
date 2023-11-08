@@ -17,7 +17,7 @@ public class RAM {
     private int storageSize;
     // Поддерживаемые пары частот JEDEC и вольтажа
     private ExtremeMemProf extremeMemProf;
-    private final ArrayList<FormFactor> avaibleFormFactors = new ArrayList<>();
+    private final ArrayList<FormFactor> availableFormFactors = new ArrayList<>();
     DDRVersion ddrVersion;
     int powerConsumption;
 }

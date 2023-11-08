@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Motherboard implements Validator {
@@ -9,6 +10,7 @@ public class Motherboard implements Validator {
     private int RAMTablesNum;
     // form factor
     private Bios bios;
+    final private ArrayList<Integer> availableProcModels = new ArrayList<>();
 
     public Socket getSocket() {
         return procSocket;
@@ -20,5 +22,9 @@ public class Motherboard implements Validator {
 
     public boolean Validate(Computer computer) {
         return Objects.equals(procSocket, computer.getSocket());
+    }
+
+    public ArrayList<Integer> getAvailableProcModels() {
+        return availableProcModels;
     }
 }

@@ -1,3 +1,4 @@
+import javax.lang.model.type.NullType;
 import java.util.Objects;
 
 public class Computer {
@@ -31,11 +32,27 @@ public class Computer {
         this.wifiAdaptor = wifiAdaptor;
     }
 
-    boolean Validate() {
-        Motherboard.Validate(this);
+    int Validate() {
+        boolean is_valid = processor.Validate(this) && bios.Validate(this);
+        if (is_valid) {
+            boolean is_usage_safe = CheckCoolingSystem();
+            if (is_usage_safe) {
+                return 1;
+            }
+            return 0;
+        }
+        return -1;
     }
 
     public Socket getSocket() {
         return processor.getSocket();
+    }
+
+    public Motherboard getMotherboard() {
+        return motherboard;
+    }
+
+    private boolean CheckCoolingSystem() {
+        return coolingSystem.getMax_TDP() > processor.getTDP();
     }
 }
