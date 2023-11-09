@@ -9,12 +9,21 @@ public class VideoCard extends ComputerPart {
     private final int powerConsumption;
 
     public VideoCard(String model, Size size, int memSize, String PCIEVersion, int chipFreq, int powerConsumption) {
+        super("VideoCard");
         this.model = model;
         this.size = size;
         this.memSize = memSize;
         this.PCIEVersion = PCIEVersion;
         this.chipFreq = chipFreq;
         this.powerConsumption = powerConsumption;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VideoCard that = (VideoCard) o;
+        return model.equals(that.model);
     }
 
     public int getPowerConsumption() {

@@ -1,5 +1,7 @@
 package ComputerClasses;
 
+import java.util.Objects;
+
 public class WiFiAdaptor extends ComputerPart {
     private final String model;
     private final String versionStandard;
@@ -9,11 +11,20 @@ public class WiFiAdaptor extends ComputerPart {
 
     public WiFiAdaptor(String versionStandard, boolean bluetoothPresence
                     , String pcieVersion, int powerConsumption, String model) {
+        super("WiFiAdaptor");
         this.versionStandard = versionStandard;
         this.bluetoothPresence = bluetoothPresence;
         this.pcieVersion = pcieVersion;
         this.powerConsumption = powerConsumption;
         this.model = model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WiFiAdaptor that = (WiFiAdaptor) o;
+        return Objects.equals(model, that.model);
     }
 
     public int getPowerConsumption() {

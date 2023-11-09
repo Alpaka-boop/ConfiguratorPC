@@ -1,6 +1,7 @@
 package ComputerClasses;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class RAM extends ComputerPart {
     private final int storageSize;
@@ -16,6 +17,7 @@ public class RAM extends ComputerPart {
     public RAM(int storageSize, ArrayList<Integer> JEDECFrequencies, ArrayList<Integer> JEDECVoltage
             , XMP xmp, FormFactor formFactor, String ddrVersion, int powerConsumption
             , int currentOperatingFrequency, int currentOperatingVoltage) {
+        super("RAM");
         this.storageSize = storageSize;
         this.JEDECFrequencies = JEDECFrequencies;
         this.JEDECVoltage = JEDECVoltage;
@@ -25,6 +27,14 @@ public class RAM extends ComputerPart {
         this.powerConsumption = powerConsumption;
         this.currentOperatingFrequency = currentOperatingFrequency;
         this.currentOperatingVoltage = currentOperatingVoltage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RAM ram = (RAM) o;
+        return Objects.equals(ddrVersion, ram.ddrVersion);
     }
 
     public ArrayList<Integer> getJEDECFrequencies() {

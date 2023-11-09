@@ -7,10 +7,19 @@ public class HDD extends ComputerPart {
     private final int powerConsumption;
 
     public HDD(String model, int storageSize, int spindleRotationSpeed, int powerConsumption) {
+        super("HDD");
         this.storageSize = storageSize;
         this.spindleRotationSpeed = spindleRotationSpeed;
         this.powerConsumption = powerConsumption;
         this.model = model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HDD hdd = (HDD) o;
+        return model.equals(hdd.model);
     }
 
     public int getPowerConsumption() {

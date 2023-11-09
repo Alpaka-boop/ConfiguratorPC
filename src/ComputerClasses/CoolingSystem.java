@@ -9,10 +9,19 @@ public class CoolingSystem extends ComputerPart {
     final private int maxTDP;
 
     public CoolingSystem(String model, Size size, int maxTDP, ArrayList<Socket> socketsList) {
+        super("CoolingSystem");
         this.size = size;
         this.maxTDP = maxTDP;
         this.socketsList.addAll(socketsList);
         this.model = model;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CoolingSystem that = (CoolingSystem) o;
+        return model.equals(that.model);
     }
 
     public int getMaxTDP() {

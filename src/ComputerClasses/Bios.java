@@ -1,6 +1,7 @@
 package ComputerClasses;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bios extends ComputerPart implements Validator {
     private final String type;
@@ -8,10 +9,20 @@ public class Bios extends ComputerPart implements Validator {
     private final ArrayList<String> supportedProcModels = new ArrayList<>();
 
     public Bios(String type, String version, ArrayList<String> procModels) {
+        super("Bios");
         this.type = type;
         this.version = version;
         this.supportedProcModels.addAll(procModels);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bios bios = (Bios) o;
+        return Objects.equals(type, bios.type) && Objects.equals(version, bios.version);
+    }
+
 
     public void Validate(Computer computer) throws InvalidComponentsException {
         ValidateProc(computer.getProcessor());

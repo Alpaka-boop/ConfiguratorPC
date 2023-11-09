@@ -18,6 +18,7 @@ public class Motherboard extends ComputerPart implements Validator {
 
     public Motherboard(Socket procSocket, int PCIELinesNum, int SATAPortsNum, Chipset chipset
             , boolean supportedDERStandard, int RAMTablesNum, FormFactor formFactor, Bios bios, String model, boolean isIntegratedWifiAdaptor) {
+        super("Motherboard");
         this.procSocket = procSocket;
         this.PCIELinesNum = PCIELinesNum;
         this.SATAPortsNum = SATAPortsNum;
@@ -28,6 +29,14 @@ public class Motherboard extends ComputerPart implements Validator {
         this.bios = bios;
         this.model = model;
         this.isIntegratedWifiAdaptor = isIntegratedWifiAdaptor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Motherboard motherboard = (Motherboard) o;
+        return model.equals(motherboard.model);
     }
 
     public Socket getSocket() {

@@ -1,13 +1,18 @@
 package Configurator;
 
-import ComputerClasses.Computer;
-import ComputerClasses.InvalidComponentsException;
-import ComputerClasses.UnsavePCComponentsException;
+import ComputerClasses.*;
 import StoreHouse.StoreHouse;
 
 public class Configurator {
-    StoreHouse storeHouse;
-    public void Validate(Computer computer) throws InvalidComponentsException, UnsavePCComponentsException {
+    private Computer computer;
+    private final StoreHouse storeHouse;
+
+    public Configurator(Computer computer, StoreHouse storeHouse) {
+        this.computer = computer;
+        this.storeHouse = storeHouse;
+    }
+
+    public void ValidateComputer(Computer computer) throws InvalidComponentsException, UnsavePCComponentsException {
         try {
             computer.Validate();
         } catch (InvalidComponentsException cause) {
@@ -17,5 +22,9 @@ public class Configurator {
             System.out.println("Unsave assembly! No warranty!");
             System.out.println(cause.getMessage());
         }
+    }
+
+    public void setObject(ComputerPart computerPart) {
+
     }
 }

@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class Computer extends ComputerPart {
+public class Computer {
     private Motherboard motherboard;
     private Processor processor;
     private CoolingSystem coolingSystem;
@@ -101,6 +101,23 @@ public class Computer extends ComputerPart {
             + videoCard.getPowerConsumption() + ssd.getPowerConsumption()
             + hdd.getPowerConsumption() + wifiAdaptor.getPowerConsumption();
 
+    }
+
+    public void setComputerPart(ComputerPart computerPart) {
+        if (computerPart == null) {
+            return;
+        }
+        if (computerPart instanceof Motherboard) setMotherboard((Motherboard) computerPart);
+        if (computerPart instanceof Processor) setProcessor((Processor) computerPart);
+        if (computerPart instanceof CoolingSystem) setCoolingSystem((CoolingSystem) computerPart);
+        if (computerPart instanceof RAM) setRAM((RAM) computerPart);
+        if (computerPart instanceof XMP) setXMP((XMP) computerPart);
+        if (computerPart instanceof VideoCard) setVideoCard((VideoCard) computerPart);
+        if (computerPart instanceof SSD) setSSD((SSD) computerPart);
+        if (computerPart instanceof HDD) setHDD((HDD) computerPart);
+        if (computerPart instanceof ComputerCase) setComputerCase((ComputerCase) computerPart);
+        if (computerPart instanceof PowerUnit) setPowerUnit((PowerUnit) computerPart);
+        if (computerPart instanceof WiFiAdaptor) setWiFiAdaptor((WiFiAdaptor) computerPart);
     }
 
     public void setMotherboard(Motherboard motherboard) {

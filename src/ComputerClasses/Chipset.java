@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class Chipset extends ComputerPart {
+public class Chipset {
     private final MemoryFreq memoryFreq;
     private final String supportedXMPType;
 

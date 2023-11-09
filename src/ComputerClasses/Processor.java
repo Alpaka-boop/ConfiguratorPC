@@ -13,6 +13,7 @@ public class Processor extends ComputerPart implements Validator {
 
     public Processor(String model, int coreFrequency, int coreNum, Socket socket
             , MemoryFreq memoryFreq, int TDP, int powerConsumption, boolean isIntegratedGraphCore) {
+        super("Processor");
         this.model = model;
         this.coreFrequency = coreFrequency;
         this.coreNum = coreNum;
@@ -33,6 +34,14 @@ public class Processor extends ComputerPart implements Validator {
         if (!isIntegratedGraphCore) {
             ValidateVideoCard(computer.getVideoCard());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Processor processor = (Processor) o;
+        return Objects.equals(model, processor.model);
     }
 
     public String getModel() {

@@ -5,8 +5,17 @@ public class ComputerCase extends ComputerPart implements Validator {
     private final FormFactor formFactor;
 
     public ComputerCase(FormFactor formFactor, Size maxVideoCardSize) {
+        super("ComputerCase");
         this.formFactor = formFactor;
         this.maxVideoCardSize = maxVideoCardSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComputerCase that = (ComputerCase) o;
+        return formFactor.equals(that.formFactor);
     }
 
     public void Validate(Computer computer) throws InvalidComponentsException {

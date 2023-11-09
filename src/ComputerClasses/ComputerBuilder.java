@@ -82,7 +82,7 @@ public class ComputerBuilder {
         wifiAdaptor = null;
     }
 
-    public Computer Build() {
+    public Computer build() {
         return new Computer(motherboard, processor, coolingSystem, ram, xmp
                         , videoCard, ssd, hdd, computerCase, powerUnit, wifiAdaptor);
     }
