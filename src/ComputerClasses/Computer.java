@@ -145,6 +145,7 @@ public class Computer {
             case "WiFiAdaptor":
                 return wifiAdaptor;
         }
+        return null;
     }
 
     public void setMotherboard(Motherboard motherboard) {
