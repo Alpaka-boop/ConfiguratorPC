@@ -1,7 +1,8 @@
+package ComputerClasses;
+
 import java.util.Objects;
 
-public class Socket {
-    private String socketName;
+public record Socket(String socketName) {
 
     @Override
     public boolean equals(Object o) {

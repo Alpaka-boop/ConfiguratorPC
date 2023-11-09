@@ -1,4 +1,6 @@
-public class ComputerCase implements Validator {
+package ComputerClasses;
+
+public class ComputerCase extends ComputerPart implements Validator {
     private final Size maxVideoCardSize;
     private final FormFactor formFactor;
 
@@ -9,6 +11,14 @@ public class ComputerCase implements Validator {
 
     public void Validate(Computer computer) throws InvalidComponentsException {
         ValidateSize(computer.getMotherboard(), computer.getCoolingSystem());
+    }
+
+    public FormFactor getFormFactor() {
+        return formFactor;
+    }
+
+    public Size getMaxVideoCardSize() {
+        return maxVideoCardSize;
     }
 
     private void ValidateSize(Motherboard motherboard, CoolingSystem coolingSystem) throws InvalidComponentsException {

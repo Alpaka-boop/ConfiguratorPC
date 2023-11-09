@@ -1,10 +1,6 @@
-public class FormFactor {
-    private Size size;
+package ComputerClasses;
 
-
-    public Size getSize() {
-        return size;
-    }
+public record FormFactor(Size size) {
 
     public int getMaxMeasure() {
         return size.getMaxMeasure();

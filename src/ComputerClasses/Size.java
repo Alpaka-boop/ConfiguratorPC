@@ -1,3 +1,5 @@
+package ComputerClasses;
+
 public class Size {
     final private int width;
     final private int height;

@@ -1,10 +1,11 @@
-public class Computer {
+package ComputerClasses;
+
+public class Computer extends ComputerPart {
     private Motherboard motherboard;
     private Processor processor;
-    private Bios bios;
     private CoolingSystem coolingSystem;
     private RAM ram;
-    private XMLProfile xmlProfile;
+    private XMP xmp;
     private VideoCard videoCard;
     private SSD ssd;
     private HDD hdd;
@@ -12,15 +13,14 @@ public class Computer {
     private PowerUnit powerUnit;
     private WiFiAdaptor wifiAdaptor;
 
-    public Computer(Motherboard motherboard, Processor processor, Bios bios, CoolingSystem coolingSystem
-                , RAM ram, XMLProfile xmlProfile, VideoCard videoCard, SSD ssd, HDD hdd, ComputerCase computerCase
+    public Computer(Motherboard motherboard, Processor processor, CoolingSystem coolingSystem
+                , RAM ram, XMP xmp, VideoCard videoCard, SSD ssd, HDD hdd, ComputerCase computerCase
                 , PowerUnit powerUnit, WiFiAdaptor wifiAdaptor) {
         this.motherboard = motherboard;
         this.processor = processor;
-        this.bios = bios;
         this.coolingSystem = coolingSystem;
         this.ram = ram;
-        this.xmlProfile = xmlProfile;
+        this.xmp = xmp;
         this.videoCard = videoCard;
         this.ssd = ssd;
         this.hdd = hdd;
@@ -29,15 +29,27 @@ public class Computer {
         this.wifiAdaptor = wifiAdaptor;
     }
 
-    void Validate() throws InvalidComponentsException, UnsavePCComponentsException {
+    public void Validate() throws InvalidComponentsException, UnsavePCComponentsException {
         processor.Validate(this);
-        bios.Validate(this);
         SSDandHDDValidation();
         motherboard.Validate(this);
         computerCase.Validate(this);
         powerUnit.Validate(this);
         ValidateWifiAdaptor();
         CheckCoolingSystem();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Computer computer = (Computer) o;
+        return motherboard.equals(computer.motherboard) && processor.equals(computer.processor)
+                && coolingSystem.equals(computer.coolingSystem)
+                && ram.equals(computer.ram) && xmp.equals(computer.xmp)
+                && videoCard.equals(computer.videoCard) && ssd.equals(computer.ssd)
+                && hdd.equals(computer.hdd) && computerCase.equals(computer.computerCase)
+                && powerUnit.equals(computer.powerUnit) && wifiAdaptor.equals(computer.wifiAdaptor);
     }
 
     public Motherboard getMotherboard() {
@@ -48,31 +60,27 @@ public class Computer {
         return processor;
     }
 
-    public Bios getBios() {
-        return bios;
-    }
-
     public CoolingSystem getCoolingSystem() {
         return coolingSystem;
     }
 
-    public RAM getRam() {
+    public RAM getRAM() {
         return ram;
     }
 
-    public XMLProfile getXmlProfile() {
-        return xmlProfile;
+    public XMP getXMP() {
+        return xmp;
     }
 
     public VideoCard getVideoCard() {
         return videoCard;
     }
 
-    public SSD getSsd() {
+    public SSD getSSD() {
         return ssd;
     }
 
-    public HDD getHdd() {
+    public HDD getHDD() {
         return hdd;
     }
 
@@ -84,7 +92,7 @@ public class Computer {
         return powerUnit;
     }
 
-    public WiFiAdaptor getWifiAdaptor() {
+    public WiFiAdaptor getWiFiAdaptor() {
         return wifiAdaptor;
     }
 
@@ -103,31 +111,27 @@ public class Computer {
         this.processor = processor;
     }
 
-    public void setBios(Bios bios) {
-        this.bios = bios;
-    }
-
     public void setCoolingSystem(CoolingSystem coolingSystem) {
         this.coolingSystem = coolingSystem;
     }
 
-    public void setRam(RAM ram) {
+    public void setRAM(RAM ram) {
         this.ram = ram;
     }
 
-    public void setXmlProfile(XMLProfile xmlProfile) {
-        this.xmlProfile = xmlProfile;
+    public void setXMP(XMP xmp) {
+        this.xmp = xmp;
     }
 
     public void setVideoCard(VideoCard videoCard) {
         this.videoCard = videoCard;
     }
 
-    public void setSsd(SSD ssd) {
+    public void setSSD(SSD ssd) {
         this.ssd = ssd;
     }
 
-    public void setHdd(HDD hdd) {
+    public void setHDD(HDD hdd) {
         this.hdd = hdd;
     }
 
@@ -139,7 +143,7 @@ public class Computer {
         this.powerUnit = powerUnit;
     }
 
-    public void setWifiAdaptor(WiFiAdaptor wifiAdaptor) {
+    public void setWiFiAdaptor(WiFiAdaptor wifiAdaptor) {
         this.wifiAdaptor = wifiAdaptor;
     }
 
@@ -158,7 +162,7 @@ public class Computer {
     private void ValidateWifiAdaptor() throws InvalidComponentsException {
         if (wifiAdaptor != null && motherboard.isIntegratedWifiAdaptor()) {
             throw new InvalidComponentsException("Wifi adaptor and motherboard are inappropriate."
-                                                + " Motherboard has integrated wifi adaptor\n");
+                                                + " ComputerClasses.Motherboard has integrated wifi adaptor\n");
         }
     }
 }

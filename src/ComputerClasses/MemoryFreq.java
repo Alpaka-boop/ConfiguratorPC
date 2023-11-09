@@ -1,3 +1,5 @@
+package ComputerClasses;
+
 public class MemoryFreq {
     private final int minMemFreq;
     private final int maxMemFreq;

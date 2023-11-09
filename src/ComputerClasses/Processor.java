@@ -1,17 +1,18 @@
+package ComputerClasses;
 import java.util.Objects;
 
-public class Processor implements Validator {
-    private final int model;
+public class Processor extends ComputerPart implements Validator {
+    private final String model;
     private final int coreFrequency;
     private final int coreNum;
     private final Socket socket;
-    private final boolean isIntegratedGraphCore = false;
+    private final boolean isIntegratedGraphCore;
     private final MemoryFreq memoryFreq;
     private final int TDP;
     private final int powerConsumption;
 
-    public Processor(int model, int coreFrequency, int coreNum, Socket socket
-            , MemoryFreq memoryFreq, int TDP, int powerConsumption) {
+    public Processor(String model, int coreFrequency, int coreNum, Socket socket
+            , MemoryFreq memoryFreq, int TDP, int powerConsumption, boolean isIntegratedGraphCore) {
         this.model = model;
         this.coreFrequency = coreFrequency;
         this.coreNum = coreNum;
@@ -19,6 +20,7 @@ public class Processor implements Validator {
         this.memoryFreq = memoryFreq;
         this.TDP = TDP;
         this.powerConsumption = powerConsumption;
+        this.isIntegratedGraphCore = isIntegratedGraphCore;
     }
 
     public Socket getSocket() {
@@ -27,14 +29,18 @@ public class Processor implements Validator {
 
     public void Validate(final Computer computer) throws InvalidComponentsException {
         ValidateMotherboard(computer.getMotherboard());
-        ValidateXMP(computer.getRam());
+        ValidateXMP(computer.getRAM());
         if (!isIntegratedGraphCore) {
             ValidateVideoCard(computer.getVideoCard());
         }
     }
 
-    public int getModel() {
+    public String getModel() {
         return model;
+    }
+
+    public int getCoreNum() {
+        return coreNum;
     }
 
     public int getTDP() {
@@ -51,11 +57,11 @@ public class Processor implements Validator {
 
     private void ValidateMotherboard(final Motherboard motherboard) throws InvalidComponentsException {
         if (!Objects.equals(motherboard.getSocket(), socket)) {
-            throw new InvalidComponentsException("Motherboard and processor are inappropriate." +
+            throw new InvalidComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
                     " The sockets are different\n");
         }
         if (!Objects.equals(memoryFreq, motherboard.getMemoryFreq())) {
-               throw new InvalidComponentsException("Motherboard and processor are inappropriate." +
+               throw new InvalidComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
                        " The frequencies are different\n");
         }
     }

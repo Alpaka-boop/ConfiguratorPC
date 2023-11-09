@@ -1,18 +1,21 @@
+package ComputerClasses;
+
 import java.util.ArrayList;
 
-public class XMP {
-    private int type;
+public class XMP extends ComputerPart {
+    private final String type;
     private final ArrayList<Integer> timings = new ArrayList<>();
-    private int voltage;
-    private int frequency;
+    private final int voltage;
+    private final int frequency;
 
-    public XMP(int voltage, int frequency, ArrayList<Integer> timings) {
+    public XMP(String type, int voltage, int frequency, ArrayList<Integer> timings) {
         this.voltage = voltage;
         this.frequency = frequency;
         this.timings.addAll(timings);
+        this.type = type;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 

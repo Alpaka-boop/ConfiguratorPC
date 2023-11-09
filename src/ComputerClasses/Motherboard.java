@@ -1,7 +1,10 @@
+package ComputerClasses;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Motherboard implements Validator {
+public class Motherboard extends ComputerPart implements Validator {
+    private final String model;
     private final Socket procSocket;
     private final int PCIELinesNum;
     private final int SATAPortsNum;
@@ -9,12 +12,12 @@ public class Motherboard implements Validator {
     private final boolean supportedDERStandard;
     private final int RAMTablesNum;
     private final FormFactor formFactor;
-    private final Bios bios;
-    private final boolean isIntegratedWifiAdaptor = false;
-    private final ArrayList<Integer> availableProcModels = new ArrayList<>();
+    private Bios bios;
+    private final boolean isIntegratedWifiAdaptor;
+    private final ArrayList<String> availableProcModels = new ArrayList<>();
 
     public Motherboard(Socket procSocket, int PCIELinesNum, int SATAPortsNum, Chipset chipset
-            , boolean supportedDERStandard, int RAMTablesNum, FormFactor formFactor, Bios bios) {
+            , boolean supportedDERStandard, int RAMTablesNum, FormFactor formFactor, Bios bios, String model, boolean isIntegratedWifiAdaptor) {
         this.procSocket = procSocket;
         this.PCIELinesNum = PCIELinesNum;
         this.SATAPortsNum = SATAPortsNum;
@@ -23,11 +26,15 @@ public class Motherboard implements Validator {
         this.RAMTablesNum = RAMTablesNum;
         this.formFactor = formFactor;
         this.bios = bios;
+        this.model = model;
+        this.isIntegratedWifiAdaptor = isIntegratedWifiAdaptor;
     }
 
     public Socket getSocket() {
         return procSocket;
     }
+
+    public String getModel() {return model;}
 
     public MemoryFreq getMemoryFreq() {
         return chipset.getMemoryFreq();
@@ -38,11 +45,12 @@ public class Motherboard implements Validator {
             throw new InvalidComponentsException("The processor and the motherboard are inappropriate."
                     + " The sockets are different\n");
         }
-        ValidateRAM(computer.getRam(), computer.getProcessor());
-        ValidateXMP(computer.getRam());
+        ValidateRAM(computer.getRAM(), computer.getProcessor());
+        ValidateXMP(computer.getRAM());
+        bios.Validate(computer);
     }
 
-    public ArrayList<Integer> getAvailableProcModels() {
+    public ArrayList<String> getAvailableProcModels() {
         return availableProcModels;
     }
 
@@ -52,6 +60,30 @@ public class Motherboard implements Validator {
 
     public boolean isIntegratedWifiAdaptor() {
         return isIntegratedWifiAdaptor;
+    }
+
+    public Bios getBios() {
+        return bios;
+    }
+
+    public void setBios(Bios bios) {
+        this.bios = bios;
+    }
+
+    public int getPCIELinesNum() {
+        return PCIELinesNum;
+    }
+
+    public int getSATAPortsNum() {
+        return SATAPortsNum;
+    }
+
+    public boolean isSupportedDERStandard() {
+        return supportedDERStandard;
+    }
+
+    public int getRAMTablesNum() {
+        return RAMTablesNum;
     }
 
     private void ValidateRAM(RAM ram, Processor processor) throws InvalidComponentsException {
@@ -64,14 +96,14 @@ public class Motherboard implements Validator {
                 return;
             }
         }
-        throw new InvalidComponentsException("RAM and processor are inappropriate."
-                                            + "The RAM are not able to support processor frequency\n");
+        throw new InvalidComponentsException("ComputerClasses.RAM and processor are inappropriate."
+                                            + "The ComputerClasses.RAM are not able to support processor frequency\n");
     }
 
     private void ValidateXMP(RAM ram) throws InvalidComponentsException {
         if (ram.getXmpType() != chipset.getSupportedXMPType()) {
            throw new InvalidComponentsException("Ram and motherboard are inappropriate."
-                                            + " RAM and motherboard chipset are different XMP types\n");
+                                            + " ComputerClasses.RAM and motherboard chipset are different ComputerClasses.XMP types\n");
         }
     }
 }
