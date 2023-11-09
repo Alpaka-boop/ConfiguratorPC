@@ -1,4 +1,6 @@
-package ComputerClasses;
+package ComputerClasses.Builders;
+
+import ComputerClasses.*;
 
 public class ComputerBuilder {
     private Motherboard motherboard;

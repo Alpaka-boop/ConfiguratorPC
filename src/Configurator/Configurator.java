@@ -3,8 +3,6 @@ package Configurator;
 import ComputerClasses.*;
 import StoreHouse.StoreHouse;
 
-import java.awt.*;
-
 public class Configurator {
     private Computer computer;
     private final StoreHouse storeHouse;
