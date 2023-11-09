@@ -8,4 +8,12 @@ public class Size {
         this.height = height;
         this.depth = depth;
     }
+
+    public int getMaxMeasure() {
+        return Math.max(Math.max(width, height), depth);
+    }
+
+    public int getMinMeasure() {
+        return Math.min(Math.min(width, height), depth);
+    }
 }

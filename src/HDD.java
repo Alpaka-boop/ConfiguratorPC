@@ -8,4 +8,8 @@ public class HDD {
         this.spindleRotationSpeed = spindleRotationSpeed;
         this.powerConsumption = powerConsumption;
     }
+
+    public int getPowerConsumption() {
+        return powerConsumption;
+    }
 }

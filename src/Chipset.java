@@ -1,8 +1,12 @@
 public class Chipset {
     private MemoryFreq memoryFreq;
-    private boolean isXMRSupported;
+    private int supportedXMPType;
 
     public MemoryFreq getMemoryFreq() {
         return memoryFreq;
+    }
+
+    public int getSupportedXMPType() {
+        return supportedXMPType;
     }
 }

@@ -15,4 +15,8 @@ public class SSD {
         this.maxWorkingSpeed = maxWorkingSpeed;
         this.powerConsumption = powerConsumption;
     }
+
+    public int getPowerConsumption() {
+        return powerConsumption;
+    }
 }

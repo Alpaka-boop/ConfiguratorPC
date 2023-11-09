@@ -12,4 +12,8 @@ public class VideoCard {
         this.chipFreq = chipFreq;
         this.powerConsumption = powerConsumption;
     }
+
+    public int getPowerConsumption() {
+        return powerConsumption;
+    }
 }

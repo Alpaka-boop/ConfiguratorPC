@@ -12,4 +12,8 @@ public class WiFiAdaptor {
         this.pcieVersion = pcieVersion;
         this.powerConsumption = powerConsumption;
     }
+
+    public int getPowerConsumption() {
+        return powerConsumption;
+    }
 }

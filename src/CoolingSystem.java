@@ -3,15 +3,19 @@ import java.util.ArrayList;
 public class CoolingSystem {
     final private Size size;
     final private ArrayList<Socket> socketsLists = new ArrayList<>();
-    final private int max_TDP;
+    final private int maxTDP;
 
-    public CoolingSystem(Size size, int max_TDP, ArrayList<Socket> socketsLists) {
+    public CoolingSystem(Size size, int maxTDP, ArrayList<Socket> socketsLists) {
         this.size = size;
-        this.max_TDP = max_TDP;
+        this.maxTDP = maxTDP;
         this.socketsLists.addAll(socketsLists);
     }
 
-    public int getMax_TDP() {
-        return max_TDP;
+    public int getMaxTDP() {
+        return maxTDP;
+    }
+
+    public Size getSize() {
+        return size;
     }
 }

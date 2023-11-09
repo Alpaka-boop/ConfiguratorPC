@@ -33,7 +33,13 @@ public class Computer {
     }
 
     int Validate() {
-        boolean is_valid = processor.Validate(this) && bios.Validate(this);
+        boolean is_valid = processor.Validate(this)
+                && bios.Validate(this)
+                && ValidateMemorySystem()
+                && motherboard.Validate(this)
+                && computerCase.Validate(this)
+                && powerUnit.Validate(this)
+                && ValidateWifiAdaptor();
         if (is_valid) {
             boolean is_usage_safe = CheckCoolingSystem();
             if (is_usage_safe) {
@@ -52,7 +58,22 @@ public class Computer {
         return motherboard;
     }
 
+    public int getPowerConsumption() {
+        return processor.getPowerConsumption() + ram.getPowerConsumption()
+            + videoCard.getPowerConsumption() + ssd.getPowerConsumption()
+            + hdd.getPowerConsumption() + wifiAdaptor.getPowerConsumption();
+
+    }
+
     private boolean CheckCoolingSystem() {
-        return coolingSystem.getMax_TDP() > processor.getTDP();
+        return coolingSystem.getMaxTDP() > processor.getTDP();
+    }
+
+    private boolean ValidateMemorySystem() {
+        return ssd != null || hdd != null;
+    }
+
+    private boolean ValidateWifiAdaptor() {
+        return wifiAdaptor == null || !motherboard.isIntegratedWifiAdaptor();
     }
 }
