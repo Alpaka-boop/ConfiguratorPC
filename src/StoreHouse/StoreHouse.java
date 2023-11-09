@@ -39,9 +39,9 @@ public class StoreHouse {
         return null;
     }
 
-    public static boolean findSuitableComputerComponent(Computer computer, String name) throws UnsavePCComputerComponentsException {
+    public static ComputerComponent findSuitableComputerComponent(Computer computer, String name) {
+        ComputerComponent oldComponent = computer.getComputerComponent(name);
         ArrayList<ComputerComponent> itemList = storage.get(name);
-        String troubleMessage = "";
         ComputerComponent unsafeComputerComponent = null;
         for (ComputerComponent item: itemList) {
             computer.setComputerComponent(item);
@@ -52,20 +52,19 @@ public class StoreHouse {
                 continue;
             } catch (UnsavePCComputerComponentsException e) {
                 unsafeComputerComponent = item;
-                troubleMessage = e.getMessage();
                 computer.clearComponent(name);
                 continue;
             }
             computer.setComputerComponent(item);
             itemList.remove(item);
-            return true;
+            return null;
         }
 
         if (unsafeComputerComponent != null) {
-            computer.setComputerComponent(unsafeComputerComponent);
+            computer.setComputerComponent(oldComponent);
             itemList.remove(unsafeComputerComponent);
-            throw new UnsavePCComputerComponentsException(troubleMessage);
+            return unsafeComputerComponent;
         }
-        return false;
+        return null;
     }
 }

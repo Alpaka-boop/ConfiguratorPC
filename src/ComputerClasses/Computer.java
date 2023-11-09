@@ -120,6 +120,33 @@ public class Computer {
         if (component instanceof WiFiAdaptor) setWiFiAdaptor((WiFiAdaptor) component);
     }
 
+    public ComputerComponent getComputerComponent(String name) {
+        switch (name) {
+            case "Motherboard":
+                return motherboard;
+            case "Processor":
+                return processor;
+            case "CoolingSystem":
+                return coolingSystem;
+            case "RAM":
+                return ram;
+            case "XMP":
+                return xmp;
+            case "VideoCard":
+                return videoCard;
+            case "SSD":
+                return ssd;
+            case "HDD":
+                return hdd;
+            case "ComputerCase":
+                return computerCase;
+            case "PowerUnit":
+                return powerUnit;
+            case "WiFiAdaptor":
+                return wifiAdaptor;
+        }
+    }
+
     public void setMotherboard(Motherboard motherboard) {
         this.motherboard = motherboard;
     }

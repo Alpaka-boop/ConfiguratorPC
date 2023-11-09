@@ -3,6 +3,8 @@ package Configurator;
 import ComputerClasses.*;
 import StoreHouse.StoreHouse;
 
+import java.awt.*;
+
 public class Configurator {
     private Computer computer;
     private final StoreHouse storeHouse;
@@ -26,7 +28,7 @@ public class Configurator {
         return true;
     }
 
-    public void setObject(ComputerComponent component) throws RuntimeException {
+    public void setComponent(ComputerComponent component) throws RuntimeException {
         ComputerComponent storeComputerComponent = StoreHouse.getComputerComponent(component);
         if (storeComputerComponent == null) {
             throw new RuntimeException("No such component in storehouse");
@@ -35,6 +37,15 @@ public class Configurator {
         if (!ValidateComputer(computer)) {
             storeHouse.putComputerComponent(storeComputerComponent);
             computer.clearComponent(component.getName());
+        }
+    }
+
+    public ComputerComponent setComponent(String name) throws RuntimeException {
+        ComputerComponent unsafeComponent = StoreHouse.findSuitableComputerComponent(computer, name);
+        if (unsafeComponent == null) {
+            throw new RuntimeException("No such component in storehouse");
+        } else {
+            return unsafeComponent;
         }
     }
 }
