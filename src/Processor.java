@@ -25,15 +25,12 @@ public class Processor implements Validator {
         return socket;
     }
 
-    public boolean Validate(final Computer computer) {
-        boolean isValid = ValidateMotherboard(computer.getMotherboard())
-            && ValidateXMP(computer.ram);
-
+    public void Validate(final Computer computer) throws InvalidComponentsException {
+        ValidateMotherboard(computer.getMotherboard());
+        ValidateXMP(computer.getRam());
         if (!isIntegratedGraphCore) {
-            isValid &= ValidateVideoCard(computer.videoCard);
+            ValidateVideoCard(computer.getVideoCard());
         }
-
-        return isValid;
     }
 
     public int getModel() {
@@ -52,19 +49,27 @@ public class Processor implements Validator {
         return powerConsumption;
     }
 
-    private boolean ValidateMotherboard(final Motherboard motherboard) {
-        return Objects.equals(motherboard.getSocket(), socket)
-            && Objects.equals(memoryFreq, motherboard.getMemoryFreq());
-    }
-
-    private boolean ValidateXMP(RAM ram) {
-        if (ram.getXmp() == null) {
-            return true;
+    private void ValidateMotherboard(final Motherboard motherboard) throws InvalidComponentsException {
+        if (!Objects.equals(motherboard.getSocket(), socket)) {
+            throw new InvalidComponentsException("Motherboard and processor are inappropriate." +
+                    " The sockets are different\n");
         }
-        return ram.getXmp().getFrequency() <= memoryFreq.getMaxMemFreq();
+        if (!Objects.equals(memoryFreq, motherboard.getMemoryFreq())) {
+               throw new InvalidComponentsException("Motherboard and processor are inappropriate." +
+                       " The frequencies are different\n");
+        }
     }
 
-    private boolean ValidateVideoCard(VideoCard videoCard) {
-        return videoCard != null;
+    private void ValidateXMP(RAM ram) {
+        if (ram.getXmp().getFrequency() > memoryFreq.getMaxMemFreq()) {
+            throw new InvalidComponentsException("Ram and processor are inappropriate." +
+                    " Memory frequency is more than maximum processor memory frequency\n");
+        }
+    }
+
+    private void ValidateVideoCard(VideoCard videoCard) throws InvalidComponentsException {
+        if (videoCard == null) {
+            throw new InvalidComponentsException("No video card or integrated graphics core\n");
+        }
     }
 }

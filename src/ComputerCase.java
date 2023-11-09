@@ -7,18 +7,18 @@ public class ComputerCase implements Validator {
         this.maxVideoCardSize = maxVideoCardSize;
     }
 
-    public boolean Validate(Computer computer) {
-        return ValidateSize(computer.motherboard, computer.coolingSystem);
+    public void Validate(Computer computer) throws InvalidComponentsException {
+        ValidateSize(computer.getMotherboard(), computer.getCoolingSystem());
     }
 
-    private boolean ValidateSize(Motherboard motherboard, CoolingSystem coolingSystem) {
-        if (motherboard.getFormFactor().getMaxMeasure() > formFactor.getMaxMeasure()) {
-            return false;
+    private void ValidateSize(Motherboard motherboard, CoolingSystem coolingSystem) throws InvalidComponentsException {
+        int a = motherboard.getFormFactor().getMinMeasure() + coolingSystem.getSize().getMinMeasure();
+        int b = Math.max(motherboard.getFormFactor().getMaxMeasure(), coolingSystem.getSize().getMaxMeasure());
+        int c = Math.max(motherboard.getFormFactor().getSecondMaxMeasure(), coolingSystem.getSize().getSecondMaxMeasure());
+
+        if (a >= formFactor.getMaxMeasure() || Math.max(b, c) >= formFactor.getSecondMaxMeasure() || Math.min(b, c) >= formFactor.getMinMeasure()) {
+            throw new InvalidComponentsException("Case, motherboard and cooling system are unsuitable."
+                                                + " Case size is wrong\n");
         }
-        if (coolingSystem.getSize().getMaxMeasure() > formFactor.getMaxMeasure()) {
-            return false;
-        }
-        return coolingSystem.getSize().getMinMeasure() + motherboard.getFormFactor().getMinMeasure()
-                < formFactor.getMaxMeasure();
     }
 }

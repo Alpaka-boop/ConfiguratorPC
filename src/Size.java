@@ -13,6 +13,10 @@ public class Size {
         return Math.max(Math.max(width, height), depth);
     }
 
+    public int getSecondMaxMeasure() {
+        return width + height + depth - getMinMeasure() - getMaxMeasure();
+    }
+
     public int getMinMeasure() {
         return Math.min(Math.min(width, height), depth);
     }

@@ -5,7 +5,9 @@ public class PowerUnit implements Validator {
         this.peakLoad = peakLoad;
     }
 
-    public boolean Validate(Computer computer) {
-        return peakLoad > computer.getPowerConsumption();
+    public void Validate(Computer computer) throws InvalidComponentsException {
+        if (peakLoad < computer.getPowerConsumption()) {
+            throw new InvalidComponentsException("Power unit and computer are inappropriate. Power unit is too weak\n");
+        }
     }
 }

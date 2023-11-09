@@ -11,16 +11,23 @@ public class Bios implements Validator {
         this.models = models;
     }
 
-    public boolean Validate(Computer computer) {
-        return ValidateProc(computer.processor)
-            && MotherboardAndProcCompatibilityChecker(computer.processor, computer.getMotherboard());
+    public void Validate(Computer computer) throws InvalidComponentsException {
+        ValidateProc(computer.getProcessor());
+        MotherboardAndProcCompatibilityChecker(computer.getProcessor(), computer.getMotherboard());
     }
 
-    private boolean MotherboardAndProcCompatibilityChecker(Processor processor, Motherboard motherboard) {
-        return motherboard.getAvailableProcModels().contains(processor.getModel());
+    private void MotherboardAndProcCompatibilityChecker(Processor processor, Motherboard motherboard)
+            throws InvalidComponentsException {
+        if (!motherboard.getAvailableProcModels().contains(processor.getModel())) {
+            throw new InvalidComponentsException("The motherboard and processor are inappropriate."
+                    + " The motherboard are not able to response this processor");
+        }
     }
 
-    private boolean ValidateProc(Processor processor) {
-        return models.contains(processor.getModel());
+    private void ValidateProc(Processor processor) throws InvalidComponentsException {
+        if (!models.contains(processor.getModel())) {
+            throw new InvalidComponentsException("The bios and processor are inappropriate."
+                    + " The bios are not able to response this processor\n");
+        }
     }
 }

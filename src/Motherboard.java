@@ -33,10 +33,13 @@ public class Motherboard implements Validator {
         return chipset.getMemoryFreq();
     }
 
-    public boolean Validate(Computer computer) {
-        return Objects.equals(procSocket, computer.getSocket())
-            && ValidateRAM(computer.ram, computer.processor)
-            && ValidateXMP(computer.ram);
+    public void Validate(Computer computer) throws InvalidComponentsException {
+        if (!Objects.equals(procSocket, computer.getProcessor().getSocket())) {
+            throw new InvalidComponentsException("The processor and the motherboard are inappropriate."
+                    + " The sockets are different\n");
+        }
+        ValidateRAM(computer.getRam(), computer.getProcessor());
+        ValidateXMP(computer.getRam());
     }
 
     public ArrayList<Integer> getAvailableProcModels() {
@@ -51,20 +54,24 @@ public class Motherboard implements Validator {
         return isIntegratedWifiAdaptor;
     }
 
-    private boolean ValidateRAM(RAM ram, Processor processor) {
+    private void ValidateRAM(RAM ram, Processor processor) throws InvalidComponentsException {
         ArrayList<Integer> ramFreq = ram.getJEDECFrequencies();
         ArrayList<Integer> ramVolt = ram.getJEDECVoltage();
         for (int i = 0; i < ramFreq.size(); i++) {
             if (ramFreq.get(i) > processor.getFrequency()) {
                 ram.setCurrentOperatingFrequency(ramFreq.get(i));
                 ram.setCurrentOperatingVoltage(ramVolt.get(i));
-                return true;
+                return;
             }
         }
-        return false;
+        throw new InvalidComponentsException("RAM and processor are inappropriate."
+                                            + "The RAM are not able to support processor frequency\n");
     }
 
-    private boolean ValidateXMP(RAM ram) {
-        return ram.getXmpType() == chipset.getSupportedXMPType();
+    private void ValidateXMP(RAM ram) throws InvalidComponentsException {
+        if (ram.getXmpType() != chipset.getSupportedXMPType()) {
+           throw new InvalidComponentsException("Ram and motherboard are inappropriate."
+                                            + " RAM and motherboard chipset are different XMP types\n");
+        }
     }
 }
