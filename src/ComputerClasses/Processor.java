@@ -1,7 +1,7 @@
 package ComputerClasses;
 import java.util.Objects;
 
-public class Processor extends ComputerPart implements Validator {
+public class Processor extends ComputerComponent implements Validator {
     private final String model;
     private final int coreFrequency;
     private final int coreNum;

@@ -2,7 +2,7 @@ package ComputerClasses;
 
 import java.util.ArrayList;
 
-public class CoolingSystem extends ComputerPart {
+public class CoolingSystem extends ComputerComponent {
     final private String model;
     final private Size size;
     final private ArrayList<Socket> socketsList = new ArrayList<>();

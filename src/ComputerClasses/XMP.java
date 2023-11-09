@@ -3,7 +3,7 @@ package ComputerClasses;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class XMP extends ComputerPart {
+public class XMP extends ComputerComponent {
     private final String type;
     private final ArrayList<Integer> timings = new ArrayList<>();
     private final int voltage;

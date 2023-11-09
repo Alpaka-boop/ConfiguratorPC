@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class SSD extends ComputerPart {
+public class SSD extends ComputerComponent {
     private final String model;
     private final String connectionType;
     private final int capacity;

@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class HDD extends ComputerPart {
+public class HDD extends ComputerComponent {
     private final String model;
     private final int storageSize;
     private final int spindleRotationSpeed;

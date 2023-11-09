@@ -29,7 +29,7 @@ public class Computer {
         this.wifiAdaptor = wifiAdaptor;
     }
 
-    public void Validate() throws InvalidComponentsException, UnsavePCComponentsException {
+    public void Validate() throws InvalidComputerComponentsException, UnsavePCComputerComponentsException {
         processor.Validate(this);
         SSDandHDDValidation();
         motherboard.Validate(this);
@@ -103,21 +103,21 @@ public class Computer {
 
     }
 
-    public void setComputerPart(ComputerPart computerPart) {
-        if (computerPart == null) {
-            return;
+    public void setComputerComponent(ComputerComponent component) throws RuntimeException {
+        if (component == null) {
+            throw new RuntimeException("Component cannot be null");
         }
-        if (computerPart instanceof Motherboard) setMotherboard((Motherboard) computerPart);
-        if (computerPart instanceof Processor) setProcessor((Processor) computerPart);
-        if (computerPart instanceof CoolingSystem) setCoolingSystem((CoolingSystem) computerPart);
-        if (computerPart instanceof RAM) setRAM((RAM) computerPart);
-        if (computerPart instanceof XMP) setXMP((XMP) computerPart);
-        if (computerPart instanceof VideoCard) setVideoCard((VideoCard) computerPart);
-        if (computerPart instanceof SSD) setSSD((SSD) computerPart);
-        if (computerPart instanceof HDD) setHDD((HDD) computerPart);
-        if (computerPart instanceof ComputerCase) setComputerCase((ComputerCase) computerPart);
-        if (computerPart instanceof PowerUnit) setPowerUnit((PowerUnit) computerPart);
-        if (computerPart instanceof WiFiAdaptor) setWiFiAdaptor((WiFiAdaptor) computerPart);
+        if (component instanceof Motherboard) setMotherboard((Motherboard) component);
+        if (component instanceof Processor) setProcessor((Processor) component);
+        if (component instanceof CoolingSystem) setCoolingSystem((CoolingSystem) component);
+        if (component instanceof RAM) setRAM((RAM) component);
+        if (component instanceof XMP) setXMP((XMP) component);
+        if (component instanceof VideoCard) setVideoCard((VideoCard) component);
+        if (component instanceof SSD) setSSD((SSD) component);
+        if (component instanceof HDD) setHDD((HDD) component);
+        if (component instanceof ComputerCase) setComputerCase((ComputerCase) component);
+        if (component instanceof PowerUnit) setPowerUnit((PowerUnit) component);
+        if (component instanceof WiFiAdaptor) setWiFiAdaptor((WiFiAdaptor) component);
     }
 
     public void setMotherboard(Motherboard motherboard) {
@@ -164,22 +164,59 @@ public class Computer {
         this.wifiAdaptor = wifiAdaptor;
     }
 
-    private void CheckCoolingSystem() throws UnsavePCComponentsException {
+    public void clearComponent(String name) {
+        switch (name) {
+            case "Motherboard":
+                setMotherboard(null);
+                break;
+            case "Processor":
+                setProcessor(null);
+                break;
+            case "CoolingSystem":
+                setCoolingSystem(null);
+                break;
+            case "RAM":
+                setRAM(null);
+                break;
+            case "XMP":
+                setXMP(null);
+                break;
+            case "VideoCard":
+                setVideoCard(null);
+                break;
+            case "SSD":
+                setSSD(null);
+            case "HDD":
+                setHDD(null);
+                break;
+            case "ComputerCase":
+                setComputerCase(null);
+                break;
+            case "PowerUnit":
+                setPowerUnit(null);
+                break;
+            case "WiFiAdaptor":
+                setWiFiAdaptor(null);
+                break;
+        }
+    }
+
+    private void CheckCoolingSystem() throws UnsavePCComputerComponentsException {
         if (coolingSystem.getMaxTDP() <= processor.getTDP()) {
-            throw new UnsavePCComponentsException("Unsafe components assembly. Cooling system is too weak");
+            throw new UnsavePCComputerComponentsException("Unsafe components assembly. Cooling system is too weak");
         }
     }
 
-    private void SSDandHDDValidation() throws InvalidComponentsException {
+    private void SSDandHDDValidation() throws InvalidComputerComponentsException {
         if (ssd == null && hdd == null) {
-            throw new InvalidComponentsException("There is no ssd or hdd memory\n");
+            throw new InvalidComputerComponentsException("There is no ssd or hdd memory\n");
         }
     }
 
-    private void ValidateWifiAdaptor() throws InvalidComponentsException {
+    private void ValidateWifiAdaptor() throws InvalidComputerComponentsException {
         if (wifiAdaptor != null && motherboard.isIntegratedWifiAdaptor()) {
-            throw new InvalidComponentsException("Wifi adaptor and motherboard are inappropriate."
-                                                + " ComputerClasses.Motherboard has integrated wifi adaptor\n");
+            throw new InvalidComputerComponentsException("Wifi adaptor and motherboard are inappropriate."
+                    + " ComputerClasses.Motherboard has integrated wifi adaptor\n");
         }
     }
 }

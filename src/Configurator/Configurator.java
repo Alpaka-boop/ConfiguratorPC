@@ -12,19 +12,29 @@ public class Configurator {
         this.storeHouse = storeHouse;
     }
 
-    public void ValidateComputer(Computer computer) throws InvalidComponentsException, UnsavePCComponentsException {
+    public boolean ValidateComputer(Computer computer) throws InvalidComputerComponentsException, UnsavePCComputerComponentsException {
         try {
             computer.Validate();
-        } catch (InvalidComponentsException cause) {
+        } catch (InvalidComputerComponentsException cause) {
             System.out.println("Invalid components!\n");
             System.out.println(cause.getMessage());
-        } catch (UnsavePCComponentsException cause) {
+            return false;
+        } catch (UnsavePCComputerComponentsException cause) {
             System.out.println("Unsave assembly! No warranty!");
             System.out.println(cause.getMessage());
         }
+        return true;
     }
 
-    public void setObject(ComputerPart computerPart) {
-
+    public void setObject(ComputerComponent component) throws RuntimeException {
+        ComputerComponent storeComputerComponent = StoreHouse.getComputerComponent(component);
+        if (storeComputerComponent == null) {
+            throw new RuntimeException("No such component in storehouse");
+        }
+        computer.setComputerComponent(storeComputerComponent);
+        if (!ValidateComputer(computer)) {
+            storeHouse.putComputerComponent(storeComputerComponent);
+            computer.clearComponent(component.getName());
+        }
     }
 }

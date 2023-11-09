@@ -3,7 +3,7 @@ package ComputerClasses;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class RAM extends ComputerPart {
+public class RAM extends ComputerComponent {
     private final int storageSize;
     private final ArrayList<Integer> JEDECFrequencies;
     private final ArrayList<Integer> JEDECVoltage;

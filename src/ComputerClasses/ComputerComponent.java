@@ -1,9 +1,9 @@
 package ComputerClasses;
 
-public class ComputerPart {
+public class ComputerComponent {
     private final String name;
 
-    public ComputerPart(String name) {
+    public ComputerComponent(String name) {
         this.name = name;
     }
 

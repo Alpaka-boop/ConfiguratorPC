@@ -3,7 +3,7 @@ package ComputerClasses;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Motherboard extends ComputerPart implements Validator {
+public class Motherboard extends ComputerComponent implements Validator {
     private final String model;
     private final Socket procSocket;
     private final int PCIELinesNum;
@@ -49,9 +49,9 @@ public class Motherboard extends ComputerPart implements Validator {
         return chipset.getMemoryFreq();
     }
 
-    public void Validate(Computer computer) throws InvalidComponentsException {
+    public void Validate(Computer computer) throws InvalidComputerComponentsException {
         if (!Objects.equals(procSocket, computer.getProcessor().getSocket())) {
-            throw new InvalidComponentsException("The processor and the motherboard are inappropriate."
+            throw new InvalidComputerComponentsException("The processor and the motherboard are inappropriate."
                     + " The sockets are different\n");
         }
         ValidateRAM(computer.getRAM(), computer.getProcessor());
@@ -95,7 +95,7 @@ public class Motherboard extends ComputerPart implements Validator {
         return RAMTablesNum;
     }
 
-    private void ValidateRAM(RAM ram, Processor processor) throws InvalidComponentsException {
+    private void ValidateRAM(RAM ram, Processor processor) throws InvalidComputerComponentsException {
         ArrayList<Integer> ramFreq = ram.getJEDECFrequencies();
         ArrayList<Integer> ramVolt = ram.getJEDECVoltage();
         for (int i = 0; i < ramFreq.size(); i++) {
@@ -105,13 +105,13 @@ public class Motherboard extends ComputerPart implements Validator {
                 return;
             }
         }
-        throw new InvalidComponentsException("ComputerClasses.RAM and processor are inappropriate."
+        throw new InvalidComputerComponentsException("ComputerClasses.RAM and processor are inappropriate."
                                             + "The ComputerClasses.RAM are not able to support processor frequency\n");
     }
 
-    private void ValidateXMP(RAM ram) throws InvalidComponentsException {
+    private void ValidateXMP(RAM ram) throws InvalidComputerComponentsException {
         if (ram.getXmpType() != chipset.getSupportedXMPType()) {
-           throw new InvalidComponentsException("Ram and motherboard are inappropriate."
+           throw new InvalidComputerComponentsException("Ram and motherboard are inappropriate."
                                             + " ComputerClasses.RAM and motherboard chipset are different ComputerClasses.XMP types\n");
         }
     }

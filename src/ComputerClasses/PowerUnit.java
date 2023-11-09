@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class PowerUnit extends ComputerPart implements Validator {
+public class PowerUnit extends ComputerComponent implements Validator {
     private final int peakLoad;
 
     public PowerUnit(int peakLoad) {

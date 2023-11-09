@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class StoreHouse {
-    private static final HashMap<String, ArrayList<ComputerPart>> storage = new HashMap<>();
+    private static final HashMap<String, ArrayList<ComputerComponent>> storage = new HashMap<>();
 
     public StoreHouse() {
         storage.put("Processor", new ArrayList<>());
@@ -23,15 +23,15 @@ public class StoreHouse {
         storage.put("HDD", new ArrayList<>());
     }
 
-    public StoreHouse putComputerPart(ComputerPart object) {
+    public StoreHouse putComputerComponent(ComputerComponent object) {
         storage.get(object.getClass().getSimpleName()).add(object);
         return this;
     }
 
-    public static ComputerPart getComputerPart(ComputerPart computerPart) {
-        ArrayList<ComputerPart> itemList = storage.get(computerPart.getName());
-        for (ComputerPart item: itemList) {
-            if (Objects.equals(item, computerPart)) {
+    public static ComputerComponent getComputerComponent(ComputerComponent component) {
+        ArrayList<ComputerComponent> itemList = storage.get(component.getName());
+        for (ComputerComponent item: itemList) {
+            if (Objects.equals(item, component)) {
                 itemList.remove(item);
                 return item;
             }
@@ -39,32 +39,32 @@ public class StoreHouse {
         return null;
     }
 
-    public static boolean findSuitableComputerPart(Computer computer, String name) throws UnsavePCComponentsException {
-        ArrayList<ComputerPart> itemList = storage.get(name);
+    public static boolean findSuitableComputerComponent(Computer computer, String name) throws UnsavePCComputerComponentsException {
+        ArrayList<ComputerComponent> itemList = storage.get(name);
         String troubleMessage = "";
-        ComputerPart unsafeComputerPart = null;
-        for (ComputerPart item: itemList) {
-            computer.setComputerPart(item);
+        ComputerComponent unsafeComputerComponent = null;
+        for (ComputerComponent item: itemList) {
+            computer.setComputerComponent(item);
             try {
                 computer.Validate();
-            } catch (InvalidComponentsException e) {
-                computer.setComputerPart(null);
+            } catch (InvalidComputerComponentsException e) {
+                computer.clearComponent(name);
                 continue;
-            } catch (UnsavePCComponentsException e) {
-                unsafeComputerPart = item;
+            } catch (UnsavePCComputerComponentsException e) {
+                unsafeComputerComponent = item;
                 troubleMessage = e.getMessage();
-                computer.setComputerPart(null);
+                computer.clearComponent(name);
                 continue;
             }
-            computer.setComputerPart(item);
+            computer.setComputerComponent(item);
             itemList.remove(item);
             return true;
         }
 
-        if (unsafeComputerPart != null) {
-            computer.setComputerPart(unsafeComputerPart);
-            itemList.remove(unsafeComputerPart);
-            throw new UnsavePCComponentsException(troubleMessage);
+        if (unsafeComputerComponent != null) {
+            computer.setComputerComponent(unsafeComputerComponent);
+            itemList.remove(unsafeComputerComponent);
+            throw new UnsavePCComputerComponentsException(troubleMessage);
         }
         return false;
     }

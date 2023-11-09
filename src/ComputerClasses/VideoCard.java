@@ -1,6 +1,6 @@
 package ComputerClasses;
 
-public class VideoCard extends ComputerPart {
+public class VideoCard extends ComputerComponent {
     private final String model;
     private final Size size;
     private final int memSize;

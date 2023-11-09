@@ -2,7 +2,7 @@ package ComputerClasses;
 
 import java.util.Objects;
 
-public class WiFiAdaptor extends ComputerPart {
+public class WiFiAdaptor extends ComputerComponent {
     private final String model;
     private final String versionStandard;
     private final boolean bluetoothPresence;

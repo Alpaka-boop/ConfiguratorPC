@@ -3,7 +3,7 @@ package ComputerClasses;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Bios extends ComputerPart implements Validator {
+public class Bios extends ComputerComponent implements Validator {
     private final String type;
     private final String version;
     private final ArrayList<String> supportedProcModels = new ArrayList<>();
@@ -24,7 +24,7 @@ public class Bios extends ComputerPart implements Validator {
     }
 
 
-    public void Validate(Computer computer) throws InvalidComponentsException {
+    public void Validate(Computer computer) throws InvalidComputerComponentsException {
         ValidateProc(computer.getProcessor());
         MotherboardAndProcCompatibilityChecker(computer.getProcessor(), computer.getMotherboard());
     }
@@ -38,16 +38,16 @@ public class Bios extends ComputerPart implements Validator {
     }
 
     private void MotherboardAndProcCompatibilityChecker(Processor processor, Motherboard motherboard)
-            throws InvalidComponentsException {
+            throws InvalidComputerComponentsException {
         if (!motherboard.getAvailableProcModels().contains(processor.getModel())) {
-            throw new InvalidComponentsException("The motherboard and processor are inappropriate."
+            throw new InvalidComputerComponentsException("The motherboard and processor are inappropriate."
                     + " The motherboard are not able to response this processor");
         }
     }
 
-    private void ValidateProc(Processor processor) throws InvalidComponentsException {
+    private void ValidateProc(Processor processor) throws InvalidComputerComponentsException {
         if (!supportedProcModels.contains(processor.getModel())) {
-            throw new InvalidComponentsException("The bios and processor are inappropriate."
+            throw new InvalidComputerComponentsException("The bios and processor are inappropriate."
                     + " The bios are not able to response this processor\n");
         }
     }
