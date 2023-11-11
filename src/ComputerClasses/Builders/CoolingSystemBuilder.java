@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CoolingSystemBuilder {
     private String model;
     private Size size;
-    private ArrayList<Socket> socketsList = new ArrayList<>();
+    private final ArrayList<Socket> socketsList = new ArrayList<>();
     private int maxTDP;
 
     public CoolingSystemBuilder setModel(String model) {
@@ -23,7 +23,7 @@ public class CoolingSystemBuilder {
     }
 
     public CoolingSystemBuilder setSocketsList(ArrayList<Socket> socketsList) {
-        this.socketsList = socketsList;
+        this.socketsList.addAll(socketsList);
         return this;
     }
 

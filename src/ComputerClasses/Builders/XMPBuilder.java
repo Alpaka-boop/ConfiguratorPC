@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class XMPBuilder {
     private String type;
-    private ArrayList<Integer> timings = new ArrayList<>();
+    private final ArrayList<Integer> timings = new ArrayList<>();
     private int voltage;
     private int frequency;
 

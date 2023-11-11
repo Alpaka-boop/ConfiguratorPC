@@ -15,7 +15,7 @@ public class MotherboardBuilder {
     private FormFactor formFactor;
     private Bios bios;
     private boolean isIntegratedWifiAdaptor;
-    private ArrayList<String> availableProcModels = new ArrayList<>();
+    private final ArrayList<String> availableProcModels = new ArrayList<>();
 
     public MotherboardBuilder setModel(String model) {
         this.model = model;
@@ -68,7 +68,7 @@ public class MotherboardBuilder {
     }
 
     public MotherboardBuilder setAvailableProcModels(ArrayList<String> availableProcModels) {
-        this.availableProcModels = availableProcModels;
+        this.availableProcModels.addAll(availableProcModels);
         return this;
     }
 

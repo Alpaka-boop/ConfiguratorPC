@@ -27,6 +27,14 @@ public class Configurator {
         return true;
     }
 
+    public Computer getComputer() {
+        return computer;
+    }
+
+    public void setComputer(Computer computer) {
+        this.computer = computer;
+    }
+
     public void setComponent(ComputerComponent component) throws RuntimeException {
         ComputerComponent storeComputerComponent = StoreHouse.getComputerComponent(component);
         if (storeComputerComponent == null) {

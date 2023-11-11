@@ -6,7 +6,7 @@ import ComputerClasses.Bios;
 public class BiosBuilder {
     private String type;
     private String version;
-    private ArrayList<String> supportedProcModels = new ArrayList<>();
+    private final ArrayList<String> supportedProcModels = new ArrayList<>();
 
     public BiosBuilder() {}
 
@@ -21,7 +21,7 @@ public class BiosBuilder {
     }
 
     public BiosBuilder addSupportedProcModels(ArrayList<String> supportedProcModels) {
-        this.supportedProcModels = supportedProcModels;
+        this.supportedProcModels.addAll(supportedProcModels);
         return this;
     }
 

@@ -62,7 +62,7 @@ public class Motherboard extends ComputerComponent implements Validator {
     public String getModel() {return model;}
 
     public MemoryFreq getMemoryFreq() {
-        return chipset.getMemoryFreq();
+        return chipset.memoryFreq();
     }
 
     public void Validate(Computer computer) throws InvalidComputerComponentsException {
@@ -126,7 +126,7 @@ public class Motherboard extends ComputerComponent implements Validator {
     }
 
     private void ValidateXMP(RAM ram) throws InvalidComputerComponentsException {
-        if (ram.getXmpType() != chipset.getSupportedXMPType()) {
+        if (!Objects.equals(ram.getXmpType(), chipset.supportedXMPType())) {
            throw new InvalidComputerComponentsException("Ram and motherboard are inappropriate."
                                             + " ComputerClasses.RAM and motherboard chipset are different ComputerClasses.XMP types\n");
         }

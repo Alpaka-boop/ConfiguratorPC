@@ -103,7 +103,7 @@ public class RAM extends ComputerComponent {
         return powerConsumption;
     }
 
-    public String getddrVersion() {
+    public String getDDRVersion() {
         return ddrVersion;
     }
 }
