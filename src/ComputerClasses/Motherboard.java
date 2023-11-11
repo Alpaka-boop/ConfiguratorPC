@@ -17,7 +17,7 @@ public class Motherboard extends ComputerComponent implements Validator {
     private final ArrayList<String> availableProcModels = new ArrayList<>();
 
     public Motherboard(Socket procSocket, int PCIELinesNum, int SATAPortsNum, Chipset chipset
-            , boolean supportedDERStandard, int RAMTablesNum, FormFactor formFactor, Bios bios, String model, boolean isIntegratedWifiAdaptor) {
+            , boolean supportedDERStandard, int RAMTablesNum, FormFactor formFactor, Bios bios, String model, boolean isIntegratedWifiAdaptor, ArrayList<String> availableProcModels) {
         super("Motherboard");
         this.procSocket = procSocket;
         this.PCIELinesNum = PCIELinesNum;
@@ -29,6 +29,7 @@ public class Motherboard extends ComputerComponent implements Validator {
         this.bios = bios;
         this.model = model;
         this.isIntegratedWifiAdaptor = isIntegratedWifiAdaptor;
+        this.availableProcModels.addAll(availableProcModels);
     }
 
     @Override
