@@ -37,6 +37,21 @@ public class Bios extends ComputerComponent implements Validator {
         return version;
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.getMotherboard().setBios((Bios) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getMotherboard().getBios();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.getMotherboard().setBios(null);
+    }
+
     private void MotherboardAndProcCompatibilityChecker(Processor processor, Motherboard motherboard)
             throws InvalidComputerComponentsException {
         if (!motherboard.getAvailableProcModels().contains(processor.getModel())) {

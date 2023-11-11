@@ -28,7 +28,7 @@ public class Processor extends ComputerComponent implements Validator {
         return socket;
     }
 
-    public void Validate(final Computer computer) throws InvalidComponentsException {
+    public void Validate(final Computer computer) throws InvalidComputerComponentsException {
         ValidateMotherboard(computer.getMotherboard());
         ValidateXMP(computer.getRAM());
         if (!isIntegratedGraphCore) {
@@ -42,6 +42,21 @@ public class Processor extends ComputerComponent implements Validator {
         if (o == null || getClass() != o.getClass()) return false;
         Processor processor = (Processor) o;
         return Objects.equals(model, processor.model);
+    }
+
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setProcessor((Processor) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getProcessor();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setProcessor(null);
     }
 
     public String getModel() {
@@ -64,27 +79,27 @@ public class Processor extends ComputerComponent implements Validator {
         return powerConsumption;
     }
 
-    private void ValidateMotherboard(final Motherboard motherboard) throws InvalidComponentsException {
+    private void ValidateMotherboard(final Motherboard motherboard) throws InvalidComputerComponentsException {
         if (!Objects.equals(motherboard.getSocket(), socket)) {
-            throw new InvalidComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
+            throw new InvalidComputerComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
                     " The sockets are different\n");
         }
         if (!Objects.equals(memoryFreq, motherboard.getMemoryFreq())) {
-               throw new InvalidComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
+               throw new InvalidComputerComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
                        " The frequencies are different\n");
         }
     }
 
     private void ValidateXMP(RAM ram) {
         if (ram.getXmp().getFrequency() > memoryFreq.getMaxMemFreq()) {
-            throw new InvalidComponentsException("Ram and processor are inappropriate." +
+            throw new InvalidComputerComponentsException("Ram and processor are inappropriate." +
                     " Memory frequency is more than maximum processor memory frequency\n");
         }
     }
 
-    private void ValidateVideoCard(VideoCard videoCard) throws InvalidComponentsException {
+    private void ValidateVideoCard(VideoCard videoCard) throws InvalidComputerComponentsException {
         if (videoCard == null) {
-            throw new InvalidComponentsException("No video card or integrated graphics core\n");
+            throw new InvalidComputerComponentsException("No video card or integrated graphics core\n");
         }
     }
 }

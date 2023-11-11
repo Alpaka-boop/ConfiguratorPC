@@ -39,6 +39,21 @@ public class Motherboard extends ComputerComponent implements Validator {
         return model.equals(motherboard.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setMotherboard((Motherboard) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getMotherboard();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setMotherboard(null);
+    }
+
     public Socket getSocket() {
         return procSocket;
     }

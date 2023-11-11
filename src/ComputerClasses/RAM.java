@@ -37,6 +37,21 @@ public class RAM extends ComputerComponent {
         return Objects.equals(ddrVersion, ram.ddrVersion);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setRAM((RAM) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getRAM();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setRAM(null);
+    }
+
     public ArrayList<Integer> getJEDECFrequencies() {
         return JEDECFrequencies;
     }

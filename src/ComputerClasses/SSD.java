@@ -24,6 +24,21 @@ public class SSD extends ComputerComponent {
         return model.equals(ssd.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setSSD((SSD) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getSSD();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setSSD(null);
+    }
+
     public int getPowerConsumption() {
         return powerConsumption;
     }

@@ -16,9 +16,24 @@ public class PowerUnit extends ComputerComponent implements Validator {
         return peakLoad == that.peakLoad;
     }
 
-    public void Validate(Computer computer) throws InvalidComponentsException {
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setPowerUnit((PowerUnit) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getPowerUnit();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setPowerUnit(null);
+    }
+
+    public void Validate(Computer computer) throws InvalidComputerComponentsException {
         if (peakLoad < computer.getPowerConsumption()) {
-            throw new InvalidComponentsException("Power unit and computer are inappropriate. Power unit is too weak\n");
+            throw new InvalidComputerComponentsException("Power unit and computer are inappropriate. Power unit is too weak\n");
         }
     }
 

@@ -18,6 +18,21 @@ public class ComputerCase extends ComputerComponent implements Validator {
         return formFactor.equals(that.formFactor);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setComputerCase((ComputerCase) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getComputerCase();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setComputerCase(null);
+    }
+
     public void Validate(Computer computer) throws InvalidComputerComponentsException {
         ValidateSize(computer.getMotherboard(), computer.getCoolingSystem());
     }

@@ -3,6 +3,8 @@ package Configurator;
 import ComputerClasses.*;
 import StoreHouse.StoreHouse;
 
+import java.awt.*;
+
 public class Configurator {
     private Computer computer;
     private final StoreHouse storeHouse;
@@ -12,7 +14,8 @@ public class Configurator {
         this.storeHouse = storeHouse;
     }
 
-    public boolean ValidateComputer(Computer computer) throws InvalidComputerComponentsException, UnsavePCComputerComponentsException {
+    public boolean ValidateComputer(Computer computer) throws InvalidComputerComponentsException
+                                                            , UnsavePCComputerComponentsException {
         try {
             computer.Validate();
         } catch (InvalidComputerComponentsException cause) {
@@ -31,10 +34,19 @@ public class Configurator {
         if (storeComputerComponent == null) {
             throw new RuntimeException("No such component in storehouse");
         }
-        computer.setComputerComponent(storeComputerComponent);
+        component.setComputerComponent(computer, storeComputerComponent);
         if (!ValidateComputer(computer)) {
             storeHouse.putComputerComponent(storeComputerComponent);
             computer.clearComponent(component.getName());
+        }
+    }
+
+    public ComputerComponent changeComputerComponent(ComputerComponent component) {
+        ComputerComponent unsavedComputerComponent = StoreHouse.findSuitableComputerComponent(computer, component);
+        if (unsavedComputerComponent == null) {
+            throw new RuntimeException("No such component in storehouse");
+        } else {
+            return unsavedComputerComponent;
         }
     }
 

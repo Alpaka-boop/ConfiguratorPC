@@ -1,8 +1,10 @@
 package StoreHouse;
 import ComputerClasses.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Objects;
 
 public class StoreHouse {
@@ -23,9 +25,8 @@ public class StoreHouse {
         storage.put("HDD", new ArrayList<>());
     }
 
-    public StoreHouse putComputerComponent(ComputerComponent object) {
+    public void putComputerComponent(ComputerComponent object) {
         storage.get(object.getClass().getSimpleName()).add(object);
-        return this;
     }
 
     public static ComputerComponent getComputerComponent(ComputerComponent component) {
@@ -39,31 +40,56 @@ public class StoreHouse {
         return null;
     }
 
+    public void makeShelfForNewComponent(String name) {
+        storage.put(name, new ArrayList<>());
+    }
+
     public static ComputerComponent findSuitableComputerComponent(Computer computer, String name) {
-        ComputerComponent oldComponent = computer.getComputerComponent(name);
         ArrayList<ComputerComponent> itemList = storage.get(name);
-        ComputerComponent unsafeComputerComponent = null;
-        for (ComputerComponent item: itemList) {
-            computer.setComputerComponent(item);
+        ComputerComponent[] unsafeComputerComponent = new ComputerComponent[]{null};
+        ComputerComponent newComponent = findComponentHelper(unsafeComputerComponent, computer, itemList);
+
+        if (unsafeComputerComponent[0] != null) {
+            itemList.remove(unsafeComputerComponent[0]);
+            return unsafeComputerComponent[0];
+        }
+        return null;
+    }
+
+    public static ComputerComponent findSuitableComputerComponent(Computer computer, ComputerComponent oldComponent) {
+        ArrayList<ComputerComponent> itemList = storage.get(oldComponent.getName());
+        ComputerComponent[] unsafeComputerComponent = new ComputerComponent[]{null};
+        ComputerComponent newComponent = findComponentHelper(unsafeComputerComponent, computer, itemList);
+        if (newComponent != null) {
+            return newComponent;
+        }
+        if (unsafeComputerComponent[0] != null) {
+            oldComponent.setComputerComponent(computer, oldComponent);
+            itemList.remove(unsafeComputerComponent[0]);
+            return unsafeComputerComponent[0];
+        }
+        return null;
+    }
+
+    private static ComputerComponent findComponentHelper(ComputerComponent[] unsafeComputerComponent
+            , Computer computer, ArrayList<ComputerComponent> itemList) {
+        Iterator<ComputerComponent> iterator = itemList.iterator();
+        while (iterator.hasNext()) {
+            ComputerComponent item = iterator.next();
+            item.setComputerComponent(computer, item);
             try {
                 computer.Validate();
             } catch (InvalidComputerComponentsException e) {
-                computer.clearComponent(name);
+                item.clearComputerComponent(computer);
                 continue;
             } catch (UnsavePCComputerComponentsException e) {
-                unsafeComputerComponent = item;
-                computer.clearComponent(name);
+                unsafeComputerComponent[0] = item;
+                item.clearComputerComponent(computer);
                 continue;
             }
-            computer.setComputerComponent(item);
-            itemList.remove(item);
-            return null;
-        }
-
-        if (unsafeComputerComponent != null) {
-            computer.setComputerComponent(oldComponent);
-            itemList.remove(unsafeComputerComponent);
-            return unsafeComputerComponent;
+            item.setComputerComponent(computer, item);
+            iterator.remove();
+            return item;
         }
         return null;
     }

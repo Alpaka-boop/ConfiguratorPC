@@ -24,6 +24,21 @@ public class CoolingSystem extends ComputerComponent {
         return model.equals(that.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setCoolingSystem((CoolingSystem) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getCoolingSystem();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setCoolingSystem(null);
+    }
+
     public int getMaxTDP() {
         return maxTDP;
     }

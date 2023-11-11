@@ -22,6 +22,22 @@ public class HDD extends ComputerComponent {
         return model.equals(hdd.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setHDD((HDD) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getHDD();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setHDD(null);
+    }
+    
+
     public int getPowerConsumption() {
         return powerConsumption;
     }

@@ -27,6 +27,21 @@ public class WiFiAdaptor extends ComputerComponent {
         return Objects.equals(model, that.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setWiFiAdaptor((WiFiAdaptor) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getWiFiAdaptor();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setWiFiAdaptor(null);
+    }
+
     public int getPowerConsumption() {
         return powerConsumption;
     }

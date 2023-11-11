@@ -26,6 +26,21 @@ public class VideoCard extends ComputerComponent {
         return model.equals(that.model);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setVideoCard((VideoCard) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getVideoCard();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setVideoCard(null);
+    }
+
     public int getPowerConsumption() {
         return powerConsumption;
     }

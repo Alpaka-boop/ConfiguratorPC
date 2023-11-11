@@ -1,5 +1,5 @@
 package ComputerClasses;
 
 public interface Validator {
-    static boolean Validate() throws InvalidComponentsException, UnsavePCComponentsException {return true;}
+    static boolean Validate() throws InvalidComputerComponentsException, UnsavePCComputerComponentsException {return true;}
 }

@@ -25,6 +25,21 @@ public class XMP extends ComputerComponent {
         return Objects.equals(type, xmp.type);
     }
 
+    @Override
+    public void setComputerComponent(Computer computer, ComputerComponent component) {
+        computer.setXMP((XMP) component);
+    }
+
+    @Override
+    public ComputerComponent getComponent(Computer computer) {
+        return computer.getXMP();
+    }
+    
+    @Override
+    public void clearComputerComponent(Computer computer) {
+        computer.setXMP(null);
+    } 
+
     public String getType() {
         return type;
     }
