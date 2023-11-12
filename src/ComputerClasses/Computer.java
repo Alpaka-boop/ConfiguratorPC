@@ -147,43 +147,6 @@ public class Computer {
         this.wifiAdaptor = wifiAdaptor;
     }
 
-    public void clearComponent(String name) {
-        switch (name) {
-            case "Motherboard":
-                setMotherboard(null);
-                break;
-            case "Processor":
-                setProcessor(null);
-                break;
-            case "CoolingSystem":
-                setCoolingSystem(null);
-                break;
-            case "RAM":
-                setRAM(null);
-                break;
-            case "XMP":
-                setXMP(null);
-                break;
-            case "VideoCard":
-                setVideoCard(null);
-                break;
-            case "SSD":
-                setSSD(null);
-            case "HDD":
-                setHDD(null);
-                break;
-            case "ComputerCase":
-                setComputerCase(null);
-                break;
-            case "PowerUnit":
-                setPowerUnit(null);
-                break;
-            case "WiFiAdaptor":
-                setWiFiAdaptor(null);
-                break;
-        }
-    }
-
     private void CheckCoolingSystem() throws UnsavePCComputerComponentsException {
         if (coolingSystem.getMaxTDP() <= processor.getTDP()) {
             throw new UnsavePCComputerComponentsException("Unsafe components assembly. Cooling system is too weak");

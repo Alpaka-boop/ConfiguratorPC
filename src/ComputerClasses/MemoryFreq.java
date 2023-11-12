@@ -1,24 +1,24 @@
 package ComputerClasses;
 
 public class MemoryFreq {
-    private final int minMemFreq;
-    private final int maxMemFreq;
+    private final double minMemFreq;
+    private final double maxMemFreq;
 
-    public MemoryFreq(int minMemFreq, int maxMemFreq) {
+    public MemoryFreq(double minMemFreq, double maxMemFreq) {
         this.minMemFreq = minMemFreq;
         this.maxMemFreq = maxMemFreq;
     }
 
-    public MemoryFreq (int memFreq) {
+    public MemoryFreq (double memFreq) {
         this.minMemFreq = memFreq;
         this.maxMemFreq = memFreq;
     }
 
-    public int getMinMemFreq() {
+    public double getMinMemFreq() {
         return minMemFreq;
     }
 
-    public int getMaxMemFreq() {
+    public double getMaxMemFreq() {
         return maxMemFreq;
     }
 }

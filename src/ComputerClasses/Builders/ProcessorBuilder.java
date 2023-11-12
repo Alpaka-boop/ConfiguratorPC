@@ -6,7 +6,7 @@ import ComputerClasses.Socket;
 
 public class ProcessorBuilder {
     private String model;
-    private int coreFrequency;
+    private double coreFrequency;
     private int coreNum;
     private Socket socket;
     private boolean isIntegratedGraphCore;
@@ -19,7 +19,7 @@ public class ProcessorBuilder {
         return this;
     }
 
-    public ProcessorBuilder setCoreFrequency(int coreFrequency) {
+    public ProcessorBuilder setCoreFrequency(double coreFrequency) {
         this.coreFrequency = coreFrequency;
         return this;
     }

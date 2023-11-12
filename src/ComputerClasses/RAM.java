@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class RAM extends ComputerComponent {
     private final int storageSize;
-    private final ArrayList<Integer> JEDECFrequencies;
-    private final ArrayList<Integer> JEDECVoltage;
+    private final ArrayList<Double> JEDECFrequencies;
+    private final ArrayList<Double> JEDECVoltage;
     private final XMP xmp;
     private final FormFactor formFactor;
     private final String ddrVersion;
@@ -14,7 +14,7 @@ public class RAM extends ComputerComponent {
     private int currentOperatingFrequency;
     private int currentOperatingVoltage;
 
-    public RAM(int storageSize, ArrayList<Integer> JEDECFrequencies, ArrayList<Integer> JEDECVoltage
+    public RAM(int storageSize, ArrayList<Double> JEDECFrequencies, ArrayList<Double> JEDECVoltage
             , XMP xmp, FormFactor formFactor, String ddrVersion, int powerConsumption
             , int currentOperatingFrequency, int currentOperatingVoltage) {
         super("RAM");
@@ -52,7 +52,7 @@ public class RAM extends ComputerComponent {
         computer.setRAM(null);
     }
 
-    public ArrayList<Integer> getJEDECFrequencies() {
+    public ArrayList<Double> getJEDECFrequencies() {
         return JEDECFrequencies;
     }
 
@@ -76,15 +76,15 @@ public class RAM extends ComputerComponent {
         return currentOperatingVoltage;
     }
 
-    public ArrayList<Integer> getJEDECVoltage() {
+    public ArrayList<Double> getJEDECVoltage() {
         return JEDECVoltage;
     }
 
-    public void setCurrentOperatingFrequency(int currentOperatingFrequency) {
+    public void setCurrentOperatingFrequency(Double currentOperatingFrequency) {
         this.currentOperatingFrequency = currentOperatingFrequency;
     }
 
-    public void setCurrentOperatingVoltage(int currentOperatingVoltage) {
+    public void setCurrentOperatingVoltage(Double currentOperatingVoltage) {
         this.currentOperatingVoltage = currentOperatingVoltage;
     }
 

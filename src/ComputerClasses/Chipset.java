@@ -1,3 +1,3 @@
 package ComputerClasses;
 
-public record Chipset(MemoryFreq memoryFreq, String supportedXMPType) { }
+public record Chipset(MemoryFreq memoryFreq, String supportedXMPType) {}

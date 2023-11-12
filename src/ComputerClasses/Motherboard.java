@@ -112,8 +112,8 @@ public class Motherboard extends ComputerComponent implements Validator {
     }
 
     private void ValidateRAM(RAM ram, Processor processor) throws InvalidComputerComponentsException {
-        ArrayList<Integer> ramFreq = ram.getJEDECFrequencies();
-        ArrayList<Integer> ramVolt = ram.getJEDECVoltage();
+        ArrayList<Double> ramFreq = ram.getJEDECFrequencies();
+        ArrayList<Double> ramVolt = ram.getJEDECVoltage();
         for (int i = 0; i < ramFreq.size(); i++) {
             if (ramFreq.get(i) > processor.getFrequency()) {
                 ram.setCurrentOperatingFrequency(ramFreq.get(i));

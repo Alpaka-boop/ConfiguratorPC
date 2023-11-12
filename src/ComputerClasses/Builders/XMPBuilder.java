@@ -6,16 +6,16 @@ import java.util.ArrayList;
 
 public class XMPBuilder {
     private String type;
-    private final ArrayList<Integer> timings = new ArrayList<>();
-    private int voltage;
-    private int frequency;
+    private final ArrayList<Double> timings = new ArrayList<>();
+    private double voltage;
+    private double frequency;
 
     public XMPBuilder setType(String type) {
         this.type = type;
         return this;
     }
 
-    public XMPBuilder setTimings(ArrayList<Integer> timings) {
+    public XMPBuilder setTimings(ArrayList<Double> timings) {
         this.timings.addAll(timings);
         return this;
     }
@@ -25,7 +25,7 @@ public class XMPBuilder {
         return this;
     }
 
-    public XMPBuilder setFrequency(int frequency) {
+    public XMPBuilder setFrequency(double frequency) {
         this.frequency = frequency;
         return this;
     }

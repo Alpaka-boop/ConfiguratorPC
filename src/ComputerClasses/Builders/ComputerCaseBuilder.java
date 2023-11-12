@@ -8,12 +8,12 @@ public class ComputerCaseBuilder {
     private Size maxVideoCardSize;
     private FormFactor formFactor;
 
-    public ComputerCaseBuilder addFormFactor(FormFactor formFactor) {
+    public ComputerCaseBuilder setFormFactor(FormFactor formFactor) {
         this.formFactor = formFactor;
         return this;
     }
 
-    public ComputerCaseBuilder addMaxVideoCardSize(Size maxVideoCardSize) {
+    public ComputerCaseBuilder setMaxVideoCardSize(Size maxVideoCardSize) {
         this.maxVideoCardSize = maxVideoCardSize;
         return this;
     }

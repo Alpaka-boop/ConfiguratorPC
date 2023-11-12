@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class RAMBuilder {
     private int storageSize;
-    private final ArrayList<Integer> JEDECFrequencies = new ArrayList<>();
-    private final ArrayList<Integer> JEDECVoltage = new ArrayList<>();
+    private final ArrayList<Double> JEDECFrequencies = new ArrayList<>();
+    private final ArrayList<Double> JEDECVoltage = new ArrayList<>();
     private XMP xmp;
     private FormFactor formFactor;
     private String ddrVersion;
@@ -22,12 +22,12 @@ public class RAMBuilder {
         return this;
     }
 
-    public RAMBuilder setJEDECFrequencies(ArrayList<Integer> JEDECFrequencies) {
+    public RAMBuilder setJEDECFrequencies(ArrayList<Double> JEDECFrequencies) {
         this.JEDECFrequencies.addAll(JEDECFrequencies);
         return this;
     }
 
-    public RAMBuilder setJEDECVoltage(ArrayList<Integer> JEDECVoltage) {
+    public RAMBuilder setJEDECVoltage(ArrayList<Double> JEDECVoltage) {
         this.JEDECVoltage.addAll(JEDECVoltage);
         return this;
     }

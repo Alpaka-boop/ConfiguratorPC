@@ -3,7 +3,7 @@ import java.util.Objects;
 
 public class Processor extends ComputerComponent implements Validator {
     private final String model;
-    private final int coreFrequency;
+    private final double coreFrequency;
     private final int coreNum;
     private final Socket socket;
     private final boolean isIntegratedGraphCore;
@@ -11,7 +11,7 @@ public class Processor extends ComputerComponent implements Validator {
     private final int TDP;
     private final int powerConsumption;
 
-    public Processor(String model, int coreFrequency, int coreNum, Socket socket
+    public Processor(String model, double coreFrequency, int coreNum, Socket socket
             , MemoryFreq memoryFreq, int TDP, int powerConsumption, boolean isIntegratedGraphCore) {
         super("Processor");
         this.model = model;
@@ -71,7 +71,7 @@ public class Processor extends ComputerComponent implements Validator {
         return TDP;
     }
 
-    public int getFrequency() {
+    public double getFrequency() {
         return coreFrequency;
     }
 

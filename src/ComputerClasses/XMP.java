@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class XMP extends ComputerComponent {
     private final String type;
-    private final ArrayList<Integer> timings = new ArrayList<>();
-    private final int voltage;
-    private final int frequency;
+    private final ArrayList<Double> timings = new ArrayList<>();
+    private final double voltage;
+    private final double frequency;
 
-    public XMP(String type, int voltage, int frequency, ArrayList<Integer> timings) {
+    public XMP(String type, double voltage, double frequency, ArrayList<Double> timings) {
         super("XMP");
         this.voltage = voltage;
         this.frequency = frequency;
@@ -44,15 +44,15 @@ public class XMP extends ComputerComponent {
         return type;
     }
 
-    public int getVoltage() {
+    public double getVoltage() {
         return voltage;
     }
 
-    public int getFrequency() {
+    public double getFrequency() {
         return frequency;
     }
 
-    public ArrayList<Integer> getTimings() {
+    public ArrayList<Double> getTimings() {
         return timings;
     }
 }
