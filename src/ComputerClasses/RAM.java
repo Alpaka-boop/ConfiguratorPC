@@ -11,8 +11,8 @@ public class RAM extends ComputerComponent {
     private final FormFactor formFactor;
     private final String ddrVersion;
     private final int powerConsumption;
-    private int currentOperatingFrequency;
-    private int currentOperatingVoltage;
+    private double currentOperatingFrequency;
+    private double currentOperatingVoltage;
 
     public RAM(int storageSize, ArrayList<Double> JEDECFrequencies, ArrayList<Double> JEDECVoltage
             , XMP xmp, FormFactor formFactor, String ddrVersion, int powerConsumption
@@ -68,11 +68,11 @@ public class RAM extends ComputerComponent {
         return ddrVersion;
     }
 
-    public int getCurrentOperatingFrequency() {
+    public double getCurrentOperatingFrequency() {
         return currentOperatingFrequency;
     }
 
-    public int getCurrentOperatingVoltage() {
+    public double getCurrentOperatingVoltage() {
         return currentOperatingVoltage;
     }
 

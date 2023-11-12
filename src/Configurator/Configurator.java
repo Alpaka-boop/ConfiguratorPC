@@ -114,7 +114,7 @@ public class Configurator {
                 .setFormFactor(new FormFactor(new Size(2, 2, 2)))
                 .setBios(new Bios("Bios", "1.0", new ArrayList<>()))
                 .setIsIntegratedWifiAdaptor(true)
-                .setAvailableProcModels(new ArrayList<String>());
+                .setAvailableProcModels(new ArrayList<>());
         return builder.build();
     }
 
@@ -123,7 +123,7 @@ public class Configurator {
                 .setModel("Cooling")
                 .setMaxTDP(65)
                 .setSize(new Size(2, 2, 2))
-                .setSocketsList(new ArrayList<Socket>());
+                .setSocketsList(new ArrayList<>());
         return coolingSystemBuilder.build();
     }
 
