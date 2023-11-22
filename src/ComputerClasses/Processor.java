@@ -79,6 +79,18 @@ public class Processor extends ComputerComponent implements Validator {
         return powerConsumption;
     }
 
+    public double getCoreFrequency() {
+        return coreFrequency;
+    }
+
+    public MemoryFreq getMemoryFreq() {
+        return memoryFreq;
+    }
+
+    public boolean isIntegratedGraphCore() {
+        return isIntegratedGraphCore;
+    }
+
     private void ValidateMotherboard(final Motherboard motherboard) throws InvalidComputerComponentsException {
         if (!Objects.equals(motherboard.getSocket(), socket)) {
             throw new InvalidComputerComponentsException("ComputerClasses.Motherboard and processor are inappropriate." +
@@ -91,7 +103,7 @@ public class Processor extends ComputerComponent implements Validator {
     }
 
     private void ValidateXMP(RAM ram) {
-        if (ram.getXmp().getFrequency() > memoryFreq.getMaxMemFreq()) {
+        if (ram.getXMP().getFrequency() > memoryFreq.getMaxMemFreq()) {
             throw new InvalidComputerComponentsException("Ram and processor are inappropriate." +
                     " Memory frequency is more than maximum processor memory frequency\n");
         }

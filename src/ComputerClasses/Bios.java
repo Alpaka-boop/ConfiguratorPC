@@ -37,6 +37,10 @@ public class Bios extends ComputerComponent implements Validator {
         return version;
     }
 
+    public ArrayList<String> getSupportedProcModels() {
+        return supportedProcModels;
+    }
+
     @Override
     public void setComputerComponent(Computer computer, ComputerComponent component) {
         computer.getMotherboard().setBios((Bios) component);

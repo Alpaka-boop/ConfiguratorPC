@@ -10,6 +10,15 @@ public class XMPBuilder {
     private double voltage;
     private double frequency;
 
+    public XMPBuilder() {}
+
+    public XMPBuilder(XMP xmp) {
+        this.type = xmp.getType();
+        this.timings.addAll(xmp.getTimings());
+        this.voltage = xmp.getVoltage();
+        this.frequency = xmp.getFrequency();
+    }
+
     public XMPBuilder setType(String type) {
         this.type = type;
         return this;

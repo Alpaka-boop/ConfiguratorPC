@@ -15,6 +15,23 @@ public class ComputerBuilder {
     private PowerUnit powerUnit;
     private WiFiAdaptor wifiAdaptor;
 
+
+    public ComputerBuilder() {}
+
+    public ComputerBuilder(Computer computer) {
+        this.motherboard = computer.getMotherboard();
+        this.processor = computer.getProcessor();
+        this.coolingSystem = computer.getCoolingSystem();
+        this.ram = computer.getRAM();
+        this.xmp = computer.getXMP();
+        this.videoCard = computer.getVideoCard();
+        this.ssd = computer.getSSD();
+        this.hdd = computer.getHDD();
+        this.computerCase = computer.getComputerCase();
+        this.powerUnit = computer.getPowerUnit();
+        this.wifiAdaptor = computer.getWiFiAdaptor();
+    }
+
     public ComputerBuilder setMotherboard(Motherboard motherboard) {
         this.motherboard = motherboard;
         return this;

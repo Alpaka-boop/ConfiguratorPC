@@ -11,6 +11,17 @@ public class VideoCardBuilder {
     private int chipFreq;
     private int powerConsumption;
 
+    public VideoCardBuilder() {}
+
+    public VideoCardBuilder(VideoCard videoCard) {
+        this.model = videoCard.getModel();
+        this.size = videoCard.getSize();
+        this.memSize = videoCard.getMemSize();
+        this.PCIEVersion = videoCard.getPCIEVersion();
+        this.chipFreq = videoCard.getChipFreq();
+        this.powerConsumption = videoCard.getPowerConsumption();
+    }
+
     public VideoCardBuilder setModel(String model) {
         this.model = model;
         return this;

@@ -17,6 +17,22 @@ public class MotherboardBuilder {
     private boolean isIntegratedWifiAdaptor;
     private final ArrayList<String> availableProcModels = new ArrayList<>();
 
+    public MotherboardBuilder() {}
+
+    public MotherboardBuilder(MotherboardBuilder motherboardBuilder) {
+        this.model = motherboardBuilder.model;
+        this.procSocket = motherboardBuilder.procSocket;
+        this.PCIELinesNum = motherboardBuilder.PCIELinesNum;
+        this.SATAPortsNum = motherboardBuilder.SATAPortsNum;
+        this.chipset = motherboardBuilder.chipset;
+        this.supportedDERStandard = motherboardBuilder.supportedDERStandard;
+        this.RAMTablesNum = motherboardBuilder.RAMTablesNum;
+        this.formFactor = motherboardBuilder.formFactor;
+        this.bios = motherboardBuilder.bios;
+        this.isIntegratedWifiAdaptor = motherboardBuilder.isIntegratedWifiAdaptor;
+        this.availableProcModels.addAll(motherboardBuilder.availableProcModels);
+    }
+
     public MotherboardBuilder setModel(String model) {
         this.model = model;
         return this;

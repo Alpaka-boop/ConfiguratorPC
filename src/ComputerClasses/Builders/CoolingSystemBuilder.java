@@ -12,6 +12,15 @@ public class CoolingSystemBuilder {
     private final ArrayList<Socket> socketsList = new ArrayList<>();
     private int maxTDP;
 
+    public CoolingSystemBuilder() {}
+
+    public CoolingSystemBuilder(CoolingSystem coolingSystem) {
+        this.model = coolingSystem.getModel();
+        this.size = coolingSystem.getSize();
+        this.socketsList.addAll(coolingSystem.getSocketsList());
+        this.maxTDP = coolingSystem.getMaxTDP();
+    }
+
     public CoolingSystemBuilder setModel(String model) {
         this.model = model;
         return this;

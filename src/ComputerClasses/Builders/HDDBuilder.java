@@ -8,6 +8,15 @@ public class HDDBuilder {
     private int spindleRotationSpeed;
     private int powerConsumption;
 
+    public HDDBuilder() {}
+
+    public HDDBuilder(HDD hdd) {
+        this.model = hdd.getModel();
+        this.storageSize = hdd.getStorageSize();
+        this.spindleRotationSpeed = hdd.getSpindleRotationSpeed();
+        this.powerConsumption = hdd.getPowerConsumption();
+    }
+
     public HDDBuilder setModel(String model) {
         this.model = model;
         return this;

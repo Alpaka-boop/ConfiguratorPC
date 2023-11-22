@@ -14,6 +14,19 @@ public class ProcessorBuilder {
     private int TDP;
     private int powerConsumption;
 
+    public ProcessorBuilder() {}
+
+    public ProcessorBuilder(Processor processor) {
+        this.model = processor.getModel();
+        this.coreFrequency = processor.getCoreFrequency();
+        this.coreNum = processor.getCoreNum();
+        this.socket = processor.getSocket();
+        this.isIntegratedGraphCore = processor.isIntegratedGraphCore();
+        this.memoryFreq = processor.getMemoryFreq();
+        this.TDP = processor.getTDP();
+        this.powerConsumption = processor.getPowerConsumption();
+    }
+
     public ProcessorBuilder setModel(String model) {
         this.model = model;
         return this;

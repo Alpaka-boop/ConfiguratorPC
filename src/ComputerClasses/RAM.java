@@ -16,7 +16,7 @@ public class RAM extends ComputerComponent {
 
     public RAM(int storageSize, ArrayList<Double> JEDECFrequencies, ArrayList<Double> JEDECVoltage
             , XMP xmp, FormFactor formFactor, String ddrVersion, int powerConsumption
-            , int currentOperatingFrequency, int currentOperatingVoltage) {
+            , double currentOperatingFrequency, double currentOperatingVoltage) {
         super("RAM");
         this.storageSize = storageSize;
         this.JEDECFrequencies = JEDECFrequencies;
@@ -80,11 +80,11 @@ public class RAM extends ComputerComponent {
         return JEDECVoltage;
     }
 
-    public void setCurrentOperatingFrequency(Double currentOperatingFrequency) {
+    public void setCurrentOperatingFrequency(double currentOperatingFrequency) {
         this.currentOperatingFrequency = currentOperatingFrequency;
     }
 
-    public void setCurrentOperatingVoltage(Double currentOperatingVoltage) {
+    public void setCurrentOperatingVoltage(double currentOperatingVoltage) {
         this.currentOperatingVoltage = currentOperatingVoltage;
     }
 
@@ -95,7 +95,7 @@ public class RAM extends ComputerComponent {
         return xmp.getType();
     }
 
-    public XMP getXmp() {
+    public XMP getXMP() {
         return xmp;
     }
 

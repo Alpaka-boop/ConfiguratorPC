@@ -9,6 +9,16 @@ public class SSDBuilder {
     private int maxWorkingSpeed;
     private int powerConsumption;
 
+    public SSDBuilder() {}
+
+    public SSDBuilder(SSD ssd) {
+        this.model = ssd.getModel();
+        this.connectionType = ssd.getConnectionType();
+        this.capacity = ssd.getCapacity();
+        this.maxWorkingSpeed = ssd.getMaxWorkingSpeed();
+        this.powerConsumption = ssd.getPowerConsumption();
+    }
+
     public SSDBuilder setModel(String model) {
         this.model = model;
         return this;

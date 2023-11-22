@@ -9,6 +9,16 @@ public class WiFiAdaptorBuilder {
     private String pcieVersion;
     private int powerConsumption;
 
+    public WiFiAdaptorBuilder() {}
+
+    public WiFiAdaptorBuilder(WiFiAdaptor wifiAdaptor) {
+        this.model = wifiAdaptor.getModel();
+        this.versionStandard = wifiAdaptor.getVersionStandard();
+        this.bluetoothPresence = wifiAdaptor.isBluetoothPresence();
+        this.pcieVersion = wifiAdaptor.getPcieVersion();
+        this.powerConsumption = wifiAdaptor.getPowerConsumption();
+    }
+
     public WiFiAdaptorBuilder setModel(String model) {
         this.model = model;
         return this;

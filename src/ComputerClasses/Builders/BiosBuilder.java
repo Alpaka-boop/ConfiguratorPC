@@ -10,6 +10,12 @@ public class BiosBuilder {
 
     public BiosBuilder() {}
 
+    public BiosBuilder(Bios bios) {
+        this.type = bios.getType();
+        this.version = bios.getVersion();
+        this.supportedProcModels.addAll(bios.getSupportedProcModels());
+    }
+
     public BiosBuilder addType(String type) {
         this.type = type;
         return this;

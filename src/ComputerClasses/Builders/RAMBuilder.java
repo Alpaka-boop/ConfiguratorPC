@@ -14,8 +14,22 @@ public class RAMBuilder {
     private FormFactor formFactor;
     private String ddrVersion;
     private int powerConsumption;
-    private int currentOperatingFrequency;
-    private int currentOperatingVoltage;
+    private double currentOperatingFrequency;
+    private double currentOperatingVoltage;
+
+    public RAMBuilder() {}
+
+    public RAMBuilder(RAM ram) {
+        this.storageSize = ram.getStorageSize();
+        this.JEDECFrequencies.addAll(ram.getJEDECFrequencies());
+        this.JEDECVoltage.addAll(ram.getJEDECVoltage());
+        this.xmp = ram.getXMP();
+        this.formFactor = ram.getFormFactor();
+        this.ddrVersion = ram.getDDRVersion();
+        this.powerConsumption = ram.getPowerConsumption();
+        this.currentOperatingFrequency = ram.getCurrentOperatingFrequency();
+        this.currentOperatingVoltage = ram.getCurrentOperatingVoltage();
+    }
 
     public RAMBuilder setStorageSize(int storageSize) {
         this.storageSize = storageSize;
